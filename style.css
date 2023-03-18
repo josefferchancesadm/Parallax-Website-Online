@@ -5,6 +5,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -21,8 +22,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  backdrop-filter: blur(100px);
-  background: transparent;
+  /* backdrop-filter: blur(5px);
+  background: transparent; */
+  z-index: 1000;
+  overflow: hidden;
 }
 
 header .logo {
@@ -32,12 +35,29 @@ header .logo {
   font-size: 2em;
   text-transform: uppercase;
   letter-spacing: 2px;
+  animation: logoanimar 1.2s ease-in-out;
+}
+
+@keyframes logoanimar {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 header ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: headerUl 1.2s ease-in-out;
+}
+
+@keyframes headerUl {
+  0% {
+    transform: translateX(500px);
+  }
 }
 
 header ul li {
@@ -50,6 +70,7 @@ header ul li a {
   padding: 6px;
   color: #fff;
   border-radius: 15px;
+  transition: 0.6s;
 }
 
 header ul li a:hover,
@@ -57,3 +78,110 @@ header ul li a.active {
   background: #fff;
   color: #2b1055;
 }
+
+section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  padding: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, #1c0522, rgba(0, 0, 0, 0.253), transparent);
+    z-index: 10000;
+}
+
+section img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+section img#moon {
+  mix-blend-mode: screen;
+}
+
+section img#mountains_front {
+  z-index: 10;
+}
+
+#text {
+  position: absolute;
+  color: #fff;
+  white-space: nowrap;
+  font-size: 3.5vw;
+  z-index: 9;
+  text-shadow: 2px 4px 5px #2b1055;
+  animation: textPos 1.6s ease-in-out;
+}
+
+@keyframes textPos {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+#btn {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 30px;
+  border-radius: 40px;
+  background: #fff;
+  color: #2b1055;
+  font-size: 1.5em;
+  cursor: pointer;
+  z-index: 9;
+  transform: translateY(150px);
+  animation: btnPos 1.2s ease-in-out;
+  transition: .2s ease;
+}
+
+@keyframes btnPos {
+  from {    
+    transform: translateX(-400px) translateY(150px) ;
+  }
+  to {    
+    transform: translateX(0px) translateY(150px) ;
+  }
+}
+
+#btn:hover {
+    background: transparent;
+    border: 2px solid #2b1055;
+    color: #fff;
+}
+
+.sec {
+    position: relative;
+    padding: 100px;
+    background: #2b1055;
+}
+
+.sec h2 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.sec p {
+    font-size: 1.2em; 
+    color: #fff;
+    text-align: justify;
+}
+ 
